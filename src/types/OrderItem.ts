@@ -1,16 +1,46 @@
 import { Item } from "./Item";
 import { OrderTopping } from "./OrderTopping";
 
+/**
+ * オーダーアイテムクラス.
+ */
 export class OrderItem {
   constructor(
+    // 注文商品ID
     private _id: number,
+    // 商品ID
     private _itemId: number,
+    // 注文ID
     private _orderId: number,
+    // 数量
     private _quantity: number,
-    private _size: number,
+    // サイズ
+    private _size: string,
+    // 商品情報
     private _item: Item,
+    // トッピングリスト
     private _orderToppingList: Array<OrderTopping>
   ) {}
+
+  /**
+   * 注文商品１種類の小計の計算.
+   * @returns 注文商品１種類の小計価格
+   */
+  get getCalcSubTotalPrice(): number {
+    if (this.size === "M") {
+      const TOPPING_PRICE = 200;
+      return (
+        (this.item.priceM + this.orderToppingList.length * TOPPING_PRICE) *
+        this.quantity
+      );
+    } else {
+      const TOPPING_PRICE = 300;
+      return (
+        (this.item.priceL + this.orderToppingList.length * TOPPING_PRICE) *
+        this.quantity
+      );
+    }
+  }
 
   public get id(): number {
     return this._id;
@@ -44,11 +74,11 @@ export class OrderItem {
     this._quantity = quantity;
   }
 
-  public get size(): number {
+  public get size(): string {
     return this._size;
   }
 
-  public set size(size: number) {
+  public set size(size: string) {
     this._size = size;
   }
 
