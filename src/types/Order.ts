@@ -1,23 +1,62 @@
 import { User } from "./User";
 import { OrderItem } from "./OrderItem";
+import { Item } from "./Item";
+import { Topping } from "./Topping";
 
+/**
+ * オーダークラス.
+ */
 export class Order {
   constructor(
+    // 注文ID
     private _id: number,
+    // ユーザーID
     private _userId: number,
+    // 状態
     private _status: number,
+    // 合計金額
     private _totalPrice: number,
+    // 注文日
     private _orderDate: Date,
+    // 宛先氏名
     private _destinationName: string,
+    // 宛先Eメール
     private _destinationEmail: string,
+    // 宛先郵便番号
     private _destinationZipCode: string,
+    // 宛先住所
     private _destinationAddress: string,
+    // 宛先電話番号
     private _destinationTel: string,
+    // 配達日時
     private _deliveryTime: string,
+    // 支払い方法
     private _paymentMethod: number,
+    // ユーザー情報
     private _user: User,
+    // 注文商品情報
     private _orderItemList: Array<OrderItem>
   ) {}
+
+  /**
+   * 注文商品の合計税額の計算.
+   * @returns 注文商品の合計税額
+   */
+  get getTax(): number {
+    let taxPrice = 0;
+    for (const orderItem of this.orderItemList) {
+      taxPrice = (taxPrice + orderItem.getCalcSubTotalPrice) * 0.1;
+    }
+    return taxPrice;
+  }
+
+  /**
+   * 注文の合計金額の計算.
+   * @returns 注文の合計金額
+   */
+  get getCalcSubTotalPrice(): number {
+    return this.getTax * 1.1;
+  }
 
   public get id(): number {
     return this._id;
