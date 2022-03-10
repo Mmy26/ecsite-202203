@@ -1,9 +1,16 @@
 import { Topping } from "./Topping";
+/**
+ * オーダートッピングクラス.
+ */
 export class OrderTopping {
   constructor(
+    // オーダートッピングID
     private _id: string,
+    // トッピングID
     private _toppingId: number,
+    // 注文商品ID
     private _orderItemId: number,
+    // トッピング
     private _topping: Topping
   ) {}
 
