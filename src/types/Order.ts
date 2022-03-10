@@ -1,7 +1,5 @@
 import { User } from "./User";
 import { OrderItem } from "./OrderItem";
-import { Item } from "./Item";
-import { Topping } from "./Topping";
 
 /**
  * オーダークラス.
