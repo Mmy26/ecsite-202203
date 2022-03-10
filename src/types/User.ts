@@ -1,11 +1,21 @@
+/**
+ * ユーザークラス.
+ */
 export class User {
   constructor(
+    // ユーザーID
     private _id: number,
+    // ユーザー名
     private _name: string,
+    // Eメール
     private _email: string,
+    // パスワード
     private _password: string,
+    // 郵便番号
     private _zipcode: string,
+    // 住所
     private _address: string,
+    // 電話番号
     private _telephone: string
   ) {}
 
