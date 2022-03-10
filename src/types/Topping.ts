@@ -1,9 +1,17 @@
 export class Topping {
+  /**
+   * トッピングクラス.
+   */
   constructor(
+    // トッピングID
     private _id: number,
+    // タイプ
     private _type: string,
+    // トッピング名
     private _name: string,
+    // Mサイズのトッピングの価格
     private _priceM: number,
+    // Lサイズのトッピングの価格
     private _priceL: number
   ) {}
 
